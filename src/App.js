@@ -1,11 +1,16 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/HomePage';
 import MonsterListPage from "./pages/MonsterListPage";
+
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!</h1>
-      <MonsterListPage />
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dqm1/monsterlist" element={<MonsterListPage />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 
