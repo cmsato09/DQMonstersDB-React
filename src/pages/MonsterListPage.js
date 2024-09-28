@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 import { fetchMonsters } from "../api/monsterListAPI"
 
 function MonsterListPage() {
@@ -28,9 +29,9 @@ function MonsterListPage() {
     return (
       <ul>
         {monsters.map(monster => (
-          <li key={monster.id}>
+          <Link key={monster.id} to={`${monster.id}`}>
             {monster.old_name} -- {monster.family.family_eng}
-          </li>
+          </Link>
         ))}
       </ul>
     )
