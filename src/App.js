@@ -1,16 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/HomePage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 import MonsterListPage from "./pages/MonsterListPage";
+import NotFoundPage from './pages/NotFoundPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: '/dqm1/monsterlist',
+    element: <MonsterListPage />,
+  }
+]);
 
 
 function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dqm1/monsterlist" element={<MonsterListPage />} />
-        </Routes>
-      </BrowserRouter>
+    <RouterProvider router={router} />
   );
 }
 
