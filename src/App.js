@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import MonsterListPage from "./pages/MonsterListPage";
+import MonsterListPage from './pages/MonsterListPage';
+import MonsterProfilePage from './pages/MonsterProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
+import Navbar from './components/Navbar';
 
 const router = createBrowserRouter([
   {
@@ -12,13 +14,21 @@ const router = createBrowserRouter([
   {
     path: '/dqm1/monsterlist',
     element: <MonsterListPage />,
-  }
+  },
+  {
+    path: 'dqm1/monsterlist/:monsterId',
+    element: <MonsterProfilePage />
+  },
+
 ]);
 
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <div>
+      <Navbar />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
