@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import ItemListPage from './pages/ItemPage';
 import MonsterListPage from './pages/MonsterListPage';
 import MonsterProfilePage from './pages/MonsterProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
   {
     path: 'dqm1/skills',
     element: <SkillListPage />,
-  }
+  },
+  {
+    path: 'dqm1/items',
+    element: <ItemListPage />
+  },
 
 ]);
 
