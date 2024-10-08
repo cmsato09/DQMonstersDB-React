@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { fetchMonsterList } from "../api/monsterListAPI"
+import { fetchMonsterList } from "../api/monsterInfoAPI"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { fetchMonsterDetail } from "../api/monsterListAPI"
+import { fetchMonsterDetail } from "../api/monsterInfoAPI"
 
 function MonsterProfilePage() {
   const params = useParams();
