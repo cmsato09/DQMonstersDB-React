@@ -5,6 +5,7 @@ import MonsterListPage from './pages/MonsterListPage';
 import MonsterProfilePage from './pages/MonsterProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import SkillListPage from './pages/SkillListPage';
+import SkillProfilePage from './pages/SkillProfilePage';
 
 import Navbar from './components/Navbar';
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: 'dqm1/skills',
     element: <SkillListPage />,
+  },
+  {
+    path: 'dqm1/skills/:skillId',
+    element: <SkillProfilePage />,
   },
   {
     path: 'dqm1/items',
