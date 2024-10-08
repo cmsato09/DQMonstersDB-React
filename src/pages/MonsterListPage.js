@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { fetchMonsters } from "../api/monsterListAPI"
+import { fetchMonsterList } from "../api/monsterListAPI"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
@@ -10,7 +10,7 @@ function MonsterListPage() {
   useEffect(() => {
     const getMonsters = async () => {
       try {
-        const monsterData = await fetchMonsters();
+        const monsterData = await fetchMonsterList();
         setMonsters(monsterData);
       } catch (err) {
         setError(err.message);

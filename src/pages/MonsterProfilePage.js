@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { fetchMonster } from "../api/monsterListAPI"
+import { fetchMonsterDetail } from "../api/monsterListAPI"
 
 function MonsterProfilePage() {
   const params = useParams();
@@ -11,7 +11,7 @@ function MonsterProfilePage() {
   useEffect(() => {
     const getMonsterDetail = async (monster_id) => {
       try {
-        const monsterData = await fetchMonster(monster_id);
+        const monsterData = await fetchMonsterDetail(monster_id);
         setMonster(monsterData);
       } catch (err) {
         setError(err.message);
