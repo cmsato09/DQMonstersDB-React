@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage';
 import MonsterListPage from './pages/MonsterListPage';
 import MonsterProfilePage from './pages/MonsterProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
+import SkillListPage from './pages/SkillListPage';
+
 import Navbar from './components/Navbar';
 
 const router = createBrowserRouter([
@@ -17,8 +19,12 @@ const router = createBrowserRouter([
   },
   {
     path: 'dqm1/monsterlist/:monsterId',
-    element: <MonsterProfilePage />
+    element: <MonsterProfilePage />,
   },
+  {
+    path: 'dqm1/skills',
+    element: <SkillListPage />,
+  }
 
 ]);
 
