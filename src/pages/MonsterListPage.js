@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { fetchMonsters } from "../api/monsterListAPI"
+import { Link } from "react-router-dom";
+import { fetchMonsterList } from "../api/monsterInfoAPI"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
@@ -9,7 +10,7 @@ function MonsterListPage() {
   useEffect(() => {
     const getMonsters = async () => {
       try {
-        const monsterData = await fetchMonsters();
+        const monsterData = await fetchMonsterList();
         setMonsters(monsterData);
       } catch (err) {
         setError(err.message);
@@ -28,9 +29,12 @@ function MonsterListPage() {
     return (
       <ul>
         {monsters.map(monster => (
-          <li key={monster.id}>
-            {monster.old_name} -- {monster.family.family_eng}
-          </li>
+          <div>
+            <Link key={monster.id} to={`${monster.id}`}>
+              {monster.old_name}
+            </Link>
+            {monster.family.family_eng}
+          </div>
         ))}
       </ul>
     )
