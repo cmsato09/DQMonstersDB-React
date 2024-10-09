@@ -29,9 +29,9 @@ function ItemListPage() {
     return (
       <ul>
         {items.map(item => (
-          <Link key={item.id} to={`${item.id}`}>
+          <div key={item.id}>
             {item.item_name} -- {item.item_description} -- {item.item_category} {item.price}
-          </Link>
+          </div>
         ))}
       </ul>
     )

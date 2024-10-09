@@ -29,9 +29,12 @@ function MonsterListPage() {
     return (
       <ul>
         {monsters.map(monster => (
-          <Link key={monster.id} to={`${monster.id}`}>
-            {monster.old_name} -- {monster.family.family_eng}
-          </Link>
+          <div>
+            <Link key={monster.id} to={`${monster.id}`}>
+              {monster.old_name}
+            </Link>
+            {monster.family.family_eng}
+          </div>
         ))}
       </ul>
     )

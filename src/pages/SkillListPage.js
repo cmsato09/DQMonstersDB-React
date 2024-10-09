@@ -29,9 +29,12 @@ function SkillListPage() {
     return (
       <ul>
         {skills.map(skill => (
-          <Link key={skill.id} to={`${skill.id}`}>
-            {skill.old_name} -{skill.category_type}- {skill.description}
-          </Link>
+          <div>
+            <Link key={skill.id} to={`${skill.id}`}>
+              {skill.old_name} 
+            </Link>
+            -{skill.category_type}- {skill.description}
+          </div>
         ))}
       </ul>
     )
