@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchMonsterList } from "../api/monsterInfoAPI"
+import { Table } from "@radix-ui/themes"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
@@ -27,16 +28,28 @@ function MonsterListPage() {
 
   const renderedMonsterList = (monsters) => {
     return (
-      <ul>
-        {monsters.map(monster => (
-          <div>
-            <Link key={monster.id} to={`${monster.id}`}>
-              {monster.old_name}
-            </Link>
-            {monster.family.family_eng}
-          </div>
-        ))}
-      </ul>
+      <Table.Root>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Family</Table.ColumnHeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          {monsters.map(monster => (
+            <Table.Row key={monster.id}>
+              <Table.RowHeaderCell>
+                <Link key={monster.id} to={`${monster.id}`}>
+                  {monster.old_name}
+                </Link>
+              </Table.RowHeaderCell>
+              <Table.Cell>{monster.family.family_eng}</Table.Cell>
+              
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
     )
   };
 
