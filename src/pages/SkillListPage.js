@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchSkillsList } from "../api/monsterSkillAPI.js"
 import { Table } from "@radix-ui/themes"
 
@@ -42,7 +42,11 @@ function SkillListPage() {
         <Table.Body>
           {skills.map(skill => (
             <Table.Row key={skill.id}>
-              <Table.RowHeaderCell>{skill.old_name}</Table.RowHeaderCell>
+              <Table.RowHeaderCell>
+                <Link key={skill.id} to={`${skill.id}`}>
+                  {skill.old_name}
+                </Link>
+              </Table.RowHeaderCell>
               <Table.Cell>{skill.category_type}</Table.Cell>
               <Table.Cell>{skill.family_type}</Table.Cell>
               <Table.Cell>{skill.description}</Table.Cell>
