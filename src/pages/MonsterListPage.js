@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchMonsterList } from "../api/monsterInfoAPI"
-import { Table } from "@radix-ui/themes"
+import { Select, Table } from "@radix-ui/themes"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedFamily, setSelectedFamily] = useState('All');
 
   useEffect(() => {
     const getMonsters = async () => {
@@ -26,7 +27,31 @@ function MonsterListPage() {
   if (loading) return <p>Loading monsters...</p>;
   if (error) return <p>Error fetching monsters: {error}</p>;
 
+  const handleFamilyChange = (value) => {
+    setSelectedFamily(value);
+  };
+
+  const monsterfamilies = ['All', ...new Set(monsters.map(monster => monster.family.family_eng))];
+
+  const monsterfamilyDropdown = (
+    <Select.Root onValueChange={handleFamilyChange}>
+      <Select.Trigger placeholder="monster family"/>
+      <Select.Content>
+        <Select.Group>
+          <Select.Label>Location</Select.Label>
+          {monsterfamilies.map(family => (
+            <Select.Item key={family} value={family}>{family}</Select.Item>
+          ))}
+        </Select.Group>
+      </Select.Content>
+    </Select.Root>
+  );
+
   const renderedMonsterList = (monsters) => {
+    const filteredMonsters = monsters.filter(monster => {
+      const familyMatch = selectedFamily === 'All' || monster.family.family_eng === selectedFamily;
+      return familyMatch;
+    });
     return (
       <Table.Root>
         <Table.Header>
@@ -37,7 +62,7 @@ function MonsterListPage() {
         </Table.Header>
 
         <Table.Body>
-          {monsters.map(monster => (
+          {filteredMonsters.map(monster => (
             <Table.Row key={monster.id}>
               <Table.RowHeaderCell>
                 <Link key={monster.id} to={`${monster.id}`}>
@@ -56,6 +81,10 @@ function MonsterListPage() {
   return (
     <div>
       <h1>Monster List</h1>
+      <div>
+        Filter by: 
+        {monsterfamilyDropdown}
+      </div>
       {renderedMonsterList(monsters)}
     </div>
   )
