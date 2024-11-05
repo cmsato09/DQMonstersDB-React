@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchMonsterList } from "../api/monsterInfoAPI"
-import { Select, Table } from "@radix-ui/themes"
+import { Select, Table, TextField } from "@radix-ui/themes"
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedFamily, setSelectedFamily] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const getMonsters = async () => {
@@ -38,7 +39,7 @@ function MonsterListPage() {
       <Select.Trigger placeholder="monster family"/>
       <Select.Content>
         <Select.Group>
-          <Select.Label>Location</Select.Label>
+          <Select.Label>FAMILY</Select.Label>
           {monsterfamilies.map(family => (
             <Select.Item key={family} value={family}>{family}</Select.Item>
           ))}
@@ -47,10 +48,19 @@ function MonsterListPage() {
     </Select.Root>
   );
 
+  const searchInput = (
+    <TextField.Root
+      placeholder="Search monster name..."
+      value={searchQuery}
+      onChange={(event) => setSearchQuery(event.target.value)}
+    />
+  );
+  
   const renderedMonsterList = (monsters) => {
     const filteredMonsters = monsters.filter(monster => {
       const familyMatch = selectedFamily === 'All' || monster.family.family_eng === selectedFamily;
-      return familyMatch;
+      const nameMatch = monster.old_name.toLowerCase().includes(searchQuery.toLowerCase());
+      return familyMatch && nameMatch;
     });
     return (
       <Table.Root>
@@ -82,6 +92,7 @@ function MonsterListPage() {
     <div>
       <h1>Monster List</h1>
       <div>
+        {searchInput}
         Filter by: 
         {monsterfamilyDropdown}
       </div>
