@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { fetchMonsterDetail } from "../api/monsterInfoAPI"
+import apiClient from "../api/apiClient";
+import { Card, Flex, Grid, Text } from "@radix-ui/themes"
 
 function MonsterProfilePage() {
   const params = useParams();
@@ -25,11 +27,26 @@ function MonsterProfilePage() {
 
   if (loading) return <p>Loading monsters...</p>;
   if (error) return <p>Error fetching monsters: {error}</p>;
+  const imageURL = `${apiClient.defaults.baseURL}static/images/dqm1monsters/${monster.old_name}.png`
 
   return (
     <div>
-      <h1>Monster Profile</h1>
-      <h2>{monster.old_name}</h2>
+      <Text>Monster Profile</Text>
+      <Flex>
+        <Card>
+          <img src={imageURL} alt={monster.old_name}></img>
+        </Card>
+        <Card>
+          <Grid>
+            <Text>Game Name: {monster.old_name}</Text>
+            <Text>Updated Name: {monster.new_name}</Text>
+            <Text>{monster.family.family_eng} Family</Text>
+            <Text>Description: {monster.description}</Text>
+          </Grid>
+        </Card>
+      </Flex>
+
+      
     </div>
   );
 }
