@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchMonsterList } from "../api/monsterInfoAPI"
-import { Select, Table, TextField } from "@radix-ui/themes"
+import { Box, Container, Flex, Select, Text, TextField } from "@radix-ui/themes"
+import MonsterCard from "../components/MonsterCard";
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
@@ -35,25 +36,32 @@ function MonsterListPage() {
   const monsterfamilies = ['All', ...new Set(monsters.map(monster => monster.family.family_eng))];
 
   const monsterfamilyDropdown = (
-    <Select.Root onValueChange={handleFamilyChange}>
-      <Select.Trigger placeholder="monster family"/>
-      <Select.Content>
-        <Select.Group>
-          <Select.Label>FAMILY</Select.Label>
-          {monsterfamilies.map(family => (
-            <Select.Item key={family} value={family}>{family}</Select.Item>
-          ))}
-        </Select.Group>
-      </Select.Content>
-    </Select.Root>
+    <Flex align="center" gap="2">
+      <Text as="label" size="3">
+        Filter by :
+      </Text>
+      <Select.Root onValueChange={handleFamilyChange}>
+        <Select.Trigger placeholder="Monster Family"/>
+        <Select.Content>
+          <Select.Group>
+            <Select.Label>FAMILY</Select.Label>
+            {monsterfamilies.map(family => (
+              <Select.Item key={family} value={family}>{family}</Select.Item>
+            ))}
+          </Select.Group>
+        </Select.Content>
+      </Select.Root>
+    </Flex>
   );
 
   const searchInput = (
-    <TextField.Root
-      placeholder="Search monster name..."
-      value={searchQuery}
-      onChange={(event) => setSearchQuery(event.target.value)}
-    />
+    <Box maxWidth="250px">
+      <TextField.Root
+        placeholder="Search monster name..."
+        value={searchQuery}
+        onChange={(event) => setSearchQuery(event.target.value)}
+      />
+    </Box>
   );
   
   const renderedMonsterList = (monsters) => {
@@ -62,42 +70,30 @@ function MonsterListPage() {
       const nameMatch = monster.old_name.toLowerCase().includes(searchQuery.toLowerCase());
       return familyMatch && nameMatch;
     });
+    
     return (
-      <Table.Root>
-        <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Family</Table.ColumnHeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          {filteredMonsters.map(monster => (
-            <Table.Row key={monster.id}>
-              <Table.RowHeaderCell>
-                <Link key={monster.id} to={`${monster.id}`}>
-                  {monster.old_name}
-                </Link>
-              </Table.RowHeaderCell>
-              <Table.Cell>{monster.family.family_eng}</Table.Cell>
-              
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table.Root>
+      <Flex gap="3" wrap="wrap" justify="start">
+        {filteredMonsters.map(monster => (
+            <MonsterCard
+              key={monster.id}
+              monsterID={monster.id}
+              monsterOldName={monster.old_name}
+              monsterFamily={monster.family.family_eng}
+            />
+        ))}
+      </Flex>
     )
   };
 
   return (
-    <div>
-      <h1>Monster List</h1>
-      <div>
+    <Container size="3">
+      <h1>DQM1 Monster List</h1>
+      <Flex direction="column" gap="1" pt="2" pb="2">
         {searchInput}
-        Filter by: 
         {monsterfamilyDropdown}
-      </div>
+      </Flex>
       {renderedMonsterList(monsters)}
-    </div>
+    </Container>
   )
 }
 
