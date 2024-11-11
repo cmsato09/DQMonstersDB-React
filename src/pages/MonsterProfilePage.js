@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchBreedingInfo, fetchMonsterDetail } from "../api/monsterInfoAPI"
 import apiClient from "../api/apiClient";
 import { Card, Flex, Grid, Table, Text } from "@radix-ui/themes"
@@ -73,16 +73,29 @@ function MonsterProfilePage() {
               <Table.Row>
                 <Table.Cell>
                   {combo.pedigree ? (
-                    combo.pedigree.old_name
+                    combo.pedigree_id !== monster.id ? (
+                      <Link to={`/dqm1/monsterlist/${combo.pedigree_id}`}>
+                        {combo.pedigree.old_name}
+                      </Link>
+                    ) : (
+                      combo.pedigree.old_name
+                    )
                   ) : combo.pedigree_family ? (
                       combo.pedigree_family.family_eng
                   ) : (
                     'No Data Available'
                   )}
                 </Table.Cell>
+                
                 <Table.Cell>
                   {combo.parent2 ? (
+                    combo.parent2_id !== monster.id ? (
+                      <Link to={`/dqm1/monsterlist/${combo.parent2_id}`}>
+                        {combo.parent2.old_name}
+                      </Link>
+                    ) : (
                     combo.parent2.old_name
+                    )
                   ) : combo.family2 ? (
                       combo.family2.family_eng
                   ) : (
