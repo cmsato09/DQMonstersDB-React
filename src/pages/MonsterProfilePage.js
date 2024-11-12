@@ -50,9 +50,12 @@ function MonsterProfilePage() {
       </Flex>
       <Card>
         <Text>Skills</Text>
-        <Flex>
+        <Flex direction={'column'}>
           {monster.skills.map(skill => (
-            <Text>{skill.old_name} -- {skill.description}</Text>
+            <div>
+              <Link to={`/dqm1/skills/${skill.id}`}>{skill.old_name} </Link>
+              <Text>— {skill.description}</Text>
+            </div>
           ))}
         </Flex>
       </Card>
