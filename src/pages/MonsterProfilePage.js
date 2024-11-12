@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchBreedingInfo, fetchMonsterDetail } from "../api/monsterInfoAPI"
 import apiClient from "../api/apiClient";
-import { Card, Flex, Grid, Table, Text } from "@radix-ui/themes"
+import { Card, Container, Flex, Grid, Table, Text } from "@radix-ui/themes"
 
 function MonsterProfilePage() {
   const params = useParams();
@@ -33,7 +33,7 @@ function MonsterProfilePage() {
   const imageURL = `${apiClient.defaults.baseURL}static/images/dqm1monsters/${monster.old_name}.png`
 
   return (
-    <div>
+    <Container size="2">
       <Text>Monster Profile</Text>
       <Flex>
         <Card>
@@ -122,7 +122,7 @@ function MonsterProfilePage() {
         </Table.Root>
       </Card>
       
-    </div>
+    </Container>
   );
 }
 
