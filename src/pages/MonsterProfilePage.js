@@ -104,7 +104,13 @@ function MonsterProfilePage() {
                 </Table.Cell>
                   
                 <Table.Cell>
-                  {combo.child.old_name}
+                  {combo.child_id !== monster.id ? (
+                    <Link to={`/dqm1/monsterlist/${combo.child_id}`}>
+                      {combo.child.old_name}
+                    </Link>
+                  ) : (
+                    combo.child.old_name
+                  )}
                 </Table.Cell>
 
               </Table.Row>
