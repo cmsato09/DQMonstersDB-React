@@ -7,5 +7,10 @@ export const fetchMonsterList = async () => {
 
 export const fetchMonsterDetail = async (monster_id) => {
   const response = await apiClient.get(`/dqm1/monstersandskill/${monster_id}`);
-  return response.data
+  return response.data;
+}
+
+export const fetchBreedingInfo = async (monster_id) => {
+  const response = await apiClient.get(`/dqm1/breeding/${monster_id}`);
+  return response.data;
 }

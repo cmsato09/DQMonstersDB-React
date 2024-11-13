@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import BreedingMechanicsPage from './pages/BreedingMechanicsPage';
 import HomePage from './pages/HomePage';
 import ItemListPage from './pages/ItemPage';
 import MonsterListPage from './pages/MonsterListPage';
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <HomePage />,
     errorElement: <NotFoundPage />,
+  },
+  {
+    path: '/dqm1/breedingmechanics',
+    element: <BreedingMechanicsPage />
   },
   {
     path: '/dqm1/monsterlist',
