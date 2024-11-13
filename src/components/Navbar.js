@@ -23,12 +23,10 @@ function Navbar() {
 					</NavigationMenu.Trigger>
 					<NavigationMenu.Content className="NavigationMenuContent">
 						<ul className="List one">
-							<ListItem href="/dqm1/monsterlist" title="Monster List">
-							</ListItem>
-							<ListItem href="/dqm1/skills" title="Skills List">
-							</ListItem>
-							<ListItem href="/dqm1/items" title="Item List">
-							</ListItem>
+							<ListItem href="/dqm1/monsterlist" title="Monster List" />
+							<ListItem href="/dqm1/breedingmechanics" title="Breeding Mechanics" />
+							<ListItem href="/dqm1/skills" title="Skills List" />
+							<ListItem href="/dqm1/items" title="Item List" />
 						</ul>
 					</NavigationMenu.Content>
 				</NavigationMenu.Item>
