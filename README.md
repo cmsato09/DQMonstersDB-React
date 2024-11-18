@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Dragon Quest Monsters Database ReactJS Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is the ReactJS frontend to the deployed FastAPI project, [DQMonstersDB-API](https://github.com/cmsato09/DQMonstersDB-API). 
+It displays game information such as the beastiary, skill catalogue, and item list to help you on your quest in
+[Dragon Quest Monsters: Terry's Wonderland Retro](https://dragon-quest.org/wiki/Dragon_Quest_Monsters:_Terry's_Wonderland_RETRO).
 
-In the project directory, you can run:
+It is based on a prototype I previously developed using [Streamlit](https://streamlit.io/)
+(see the [DQMonstersDB-streamlit](https://github.com/cmsato09/DQMonstersDB-streamlit) project).
 
-### `npm start`
+[Insert picture of ReactJS frontend]: #
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Install and Run Locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Follow these steps to set up and run the project on your local machine. 
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Make sure to have Node.js, package manager (npm or yarn), and Git installed. 
 
-### `npm run build`
+### Install and Run this Project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone this repository and navigate to the project directory.
+2. Install dependencies.
+3. Run the app in development mode.
+4. Open http://localhost:3000 to view it in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+git clone https://github.com/cmsato09/DQMonstersDB-React.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm install
+# or yarn install
 
-### `npm run eject`
+npm start
+# or yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Run both ReactJS and FastAPI locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Follow the [DQMonstersDB-API "How to Run Locally"](https://github.com/cmsato09/DQMonstersDB-API?tab=readme-ov-file#how-to-run-locally)
+section. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the repo, install the dependencies on a virtual environment, create the sqlite database, and run the main.py file. 
+The FastAPI project should be running on http://localhost:8000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Follow this project's "installation and run" section shown above. Before running the app in development mode,
+change the `baseURL` in apiClient.js file to http://localhost:8000. 
 
-## Learn More
+## Technologies Used
+This project was built with [ReactJS](https://react.dev/), [Radix UI](https://www.radix-ui.com/), and [Tailwind CSS](https://tailwindcss.com/)
+to createa modern and responsive web application.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+It is an extension of the Minimal Viable Product (MVP) developed on Streamlit.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+This project is licensed under the MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You are free to use, modify, and distribute this project as long as proper attribution is given. See the `LICENSE` file for more details.
