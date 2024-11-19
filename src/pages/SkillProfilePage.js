@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchSkillDetail } from "../api/monsterSkillAPI.js"
-import { Container, Flex, Heading, Strong, Table, Text } from "@radix-ui/themes"
+import { Container, Flex, Heading, Strong, Table } from "@radix-ui/themes"
 
 function SkillProfilePage() {
   const params = useParams();

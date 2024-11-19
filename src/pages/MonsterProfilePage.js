@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchBreedingInfo, fetchMonsterDetail } from "../api/monsterInfoAPI"
 import apiClient from "../api/apiClient";
-import { Card, Container, Flex, Heading, Strong, Table, Text } from "@radix-ui/themes"
+import { Card, Container, Flex, Heading, Table, Text } from "@radix-ui/themes"
 
 function MonsterProfilePage() {
   const params = useParams();
