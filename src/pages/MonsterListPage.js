@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
 import { fetchMonsterList } from "../api/monsterInfoAPI"
-import { Box, Container, Flex, Select, Text, TextField } from "@radix-ui/themes"
+import { Box, Container, Flex, Heading, Select, Strong, Text, TextField } from "@radix-ui/themes"
 import MonsterCard from "../components/MonsterCard";
 
 function MonsterListPage() {
@@ -38,7 +37,7 @@ function MonsterListPage() {
   const monsterfamilyDropdown = (
     <Flex align="center" gap="2">
       <Text as="label" size="3">
-        Filter by :
+        <Strong>Filter by :</Strong>
       </Text>
       <Select.Root onValueChange={handleFamilyChange}>
         <Select.Trigger placeholder="Monster Family"/>
@@ -86,9 +85,9 @@ function MonsterListPage() {
   };
 
   return (
-    <Container size="3">
-      <h1>DQM1 Monster List</h1>
-      <Flex direction="column" gap="1" pt="2" pb="2">
+    <Container size="3" m="3">
+      <Heading>DQM1 Monster List</Heading>
+      <Flex direction="column" gap="2" pt="2" pb="2">
         {searchInput}
         {monsterfamilyDropdown}
       </Flex>
