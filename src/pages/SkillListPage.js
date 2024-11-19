@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchSkillsList } from "../api/monsterSkillAPI.js"
-import { Select, Table } from "@radix-ui/themes"
+import { Container, Flex, Heading, Select, Strong, Table } from "@radix-ui/themes"
 
 function SkillListPage() {
   const [skills, setSkills] = useState([]);
@@ -106,15 +106,15 @@ function SkillListPage() {
   };
 
   return (
-    <div>
-      <h1>Skill List</h1>
-      <div>
-        Filter by:
+    <Container size="3" m="3">
+      <Heading>DQM1 Skills List</Heading>
+      <Flex direction="row" gap="2" align="center">
+        <Strong>Filter by:</Strong>
         {categoryDropdown}
         {skillfamilyDropdown}
-      </div>
+      </Flex>
       {renderedSkillList(skills)}
-    </div>
+    </Container>
   )
 }
 
