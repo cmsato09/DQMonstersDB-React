@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchSkillDetail } from "../api/monsterSkillAPI.js"
-import { Container, Flex, Strong, Table, Text } from "@radix-ui/themes"
+import { Container, Flex, Heading, Strong, Table } from "@radix-ui/themes"
 
 function SkillProfilePage() {
   const params = useParams();
@@ -28,13 +28,13 @@ function SkillProfilePage() {
   if (error) return <p>Error fetching skill: {error}</p>;
 
   return (
-    <Container size="2">
+    <Container size="2" m="3">
       <Flex direction="column" gap="3">
-        <Text size="3" weight="medium">
+        <Heading as="h1" size="5">
           Skill Profile : {skill.old_name} 
-        </Text>
+        </Heading>
         
-        <Table.Root variant='surface'>
+        <Table.Root variant='surface' size="3">
           <Table.Row>
             <Table.Cell><Strong>Game Name</Strong></Table.Cell>
             <Table.Cell>{skill.old_name}</Table.Cell>
@@ -82,9 +82,9 @@ function SkillProfilePage() {
           )}
         </Table.Root>
 
-        <Text>Required Stats to Learn Skill</Text>
+        <Heading as="h2" size="3">Required Stats to Learn Skill</Heading>
 
-        <Table.Root variant='surface'>
+        <Table.Root variant='surface' size="2">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>Level</Table.ColumnHeaderCell>

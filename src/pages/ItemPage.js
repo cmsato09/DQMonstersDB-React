@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-// import { Link } from "react-router-dom";
 import { fetchItemsList } from "../api/itemListAPI.js"
-import { Select, Table } from "@radix-ui/themes"
+import { Box, Container, Flex, Heading, Select, Strong, Table } from "@radix-ui/themes"
 
 function ItemListPage() {
   const [items, setItems] = useState([]);
@@ -74,7 +73,7 @@ function ItemListPage() {
       return categoryMatch && locationMatch;
     });
     return (
-      <Table.Root>
+      <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Item</Table.ColumnHeaderCell>
@@ -101,15 +100,17 @@ function ItemListPage() {
   };
 
   return (
-    <div>
-      <h1>Item List</h1>
-      <div>
-        Filter by: 
+    <Container size="3" m="3">
+      <Heading>DQM1 Items List</Heading>
+      <Flex direction="row" gap="2" align="center">
+        <Strong>Filter by:</Strong> 
         {categoryDropdown}
         {locationDropdown}
-      </div>
-      {renderedItemList(items)}
-    </div>
+      </Flex>
+      <Box my="3">
+        {renderedItemList(items)}
+      </Box>
+    </Container>
   )
 }
 

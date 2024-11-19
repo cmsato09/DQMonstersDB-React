@@ -9,7 +9,15 @@ function MonsterCard({monsterID, monsterOldName, monsterFamily}) {
     <Box width="125px" margin="10px">
       <Card asChild>
         <Link key={monsterID} to={`${monsterID}`}>
-          <img src={imageURL} alt={monsterOldName} width="100%" height="auto"></img>
+          <img 
+            src={imageURL} 
+            alt={monsterOldName} 
+            style={{ 
+              borderRadius: '10px',
+              height: 'auto',
+              width: '100%'
+            }}
+          />
           <Text as="div">
             {monsterOldName}
           </Text>
