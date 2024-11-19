@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchBreedingInfo, fetchMonsterDetail } from "../api/monsterInfoAPI"
 import apiClient from "../api/apiClient";
-import { Card, Container, Flex, Grid, Table, Text } from "@radix-ui/themes"
+import { Card, Container, Flex, Heading, Table, Text } from "@radix-ui/themes"
 
 function MonsterProfilePage() {
   const params = useParams();
@@ -33,95 +33,109 @@ function MonsterProfilePage() {
   const imageURL = `${apiClient.defaults.baseURL}static/images/dqm1monsters/${monster.old_name}.png`
 
   return (
-    <Container size="2">
-      <Text>Monster Profile</Text>
-      <Flex>
+    <Container size="2" m="3">
+      <Flex direction="column" gap="2">
+        <Heading as="h1">{monster.old_name} Profile</Heading>
+        <Flex gap="2">
+          <Card>
+            <img 
+              src={imageURL} 
+              alt={monster.old_name}
+              styling={{ 
+                borderRadius: '10px',
+                maxWidth: '100%',
+              }}
+            />
+          </Card>
+          <Card>
+            <Flex direction="column" justify="between" height="100%">
+              <Text>Game Name: {monster.old_name}</Text>
+              <Text>Updated Name: {monster.new_name}</Text>
+              <Text>{monster.family.family_eng} Family</Text>
+              <Text>Description: {monster.description}</Text>
+            </Flex>
+          </Card>
+        </Flex>
         <Card>
-          <img src={imageURL} alt={monster.old_name}></img>
+          <Heading as="h2" size="4">Skills</Heading>
+          <Flex direction="column">
+            <Table.Root size="3">
+              {monster.skills.map(skill => (
+                <Table.Row>
+                  <Table.Cell>
+                    <Link to={`/dqm1/skills/${skill.id}`}>{skill.old_name} </Link>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Text>{skill.description}</Text>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Root>
+          </Flex>
         </Card>
+
         <Card>
-          <Grid>
-            <Text>Game Name: {monster.old_name}</Text>
-            <Text>Updated Name: {monster.new_name}</Text>
-            <Text>{monster.family.family_eng} Family</Text>
-            <Text>Description: {monster.description}</Text>
-          </Grid>
+          <Heading as="h2" size="4">Breeding Combinations</Heading>
+          <Table.Root size="3">
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeaderCell>PEDIGREE</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>PARTNER</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>OFFSPRING</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+              {breedingInfo.map(combo => (
+                <Table.Row>
+                  <Table.Cell>
+                    {combo.pedigree ? (
+                      combo.pedigree_id !== monster.id ? (
+                        <Link to={`/dqm1/monsterlist/${combo.pedigree_id}`}>
+                          {combo.pedigree.old_name}
+                        </Link>
+                      ) : (
+                        combo.pedigree.old_name
+                      )
+                    ) : combo.pedigree_family ? (
+                        combo.pedigree_family.family_eng
+                    ) : (
+                      'No Data Available'
+                    )}
+                  </Table.Cell>
+                  
+                  <Table.Cell>
+                    {combo.parent2 ? (
+                      combo.parent2_id !== monster.id ? (
+                        <Link to={`/dqm1/monsterlist/${combo.parent2_id}`}>
+                          {combo.parent2.old_name}
+                        </Link>
+                      ) : (
+                      combo.parent2.old_name
+                      )
+                    ) : combo.family2 ? (
+                        combo.family2.family_eng
+                    ) : (
+                      'No Data Available'
+                    )}
+                  </Table.Cell>
+                    
+                  <Table.Cell>
+                    {combo.child_id !== monster.id ? (
+                      <Link to={`/dqm1/monsterlist/${combo.child_id}`}>
+                        {combo.child.old_name}
+                      </Link>
+                    ) : (
+                      combo.child.old_name
+                    )}
+                  </Table.Cell>
+
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
         </Card>
       </Flex>
-      <Card>
-        <Text>Skills</Text>
-        <Flex direction={'column'}>
-          {monster.skills.map(skill => (
-            <div>
-              <Link to={`/dqm1/skills/${skill.id}`}>{skill.old_name} </Link>
-              <Text>— {skill.description}</Text>
-            </div>
-          ))}
-        </Flex>
-      </Card>
-
-      <Card>
-        <Text>Breeding Combinations</Text>
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeaderCell>PEDIGREE</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>PARTNER</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>OFFSPRING</Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {breedingInfo.map(combo => (
-              <Table.Row>
-                <Table.Cell>
-                  {combo.pedigree ? (
-                    combo.pedigree_id !== monster.id ? (
-                      <Link to={`/dqm1/monsterlist/${combo.pedigree_id}`}>
-                        {combo.pedigree.old_name}
-                      </Link>
-                    ) : (
-                      combo.pedigree.old_name
-                    )
-                  ) : combo.pedigree_family ? (
-                      combo.pedigree_family.family_eng
-                  ) : (
-                    'No Data Available'
-                  )}
-                </Table.Cell>
-                
-                <Table.Cell>
-                  {combo.parent2 ? (
-                    combo.parent2_id !== monster.id ? (
-                      <Link to={`/dqm1/monsterlist/${combo.parent2_id}`}>
-                        {combo.parent2.old_name}
-                      </Link>
-                    ) : (
-                    combo.parent2.old_name
-                    )
-                  ) : combo.family2 ? (
-                      combo.family2.family_eng
-                  ) : (
-                    'No Data Available'
-                  )}
-                </Table.Cell>
-                  
-                <Table.Cell>
-                  {combo.child_id !== monster.id ? (
-                    <Link to={`/dqm1/monsterlist/${combo.child_id}`}>
-                      {combo.child.old_name}
-                    </Link>
-                  ) : (
-                    combo.child.old_name
-                  )}
-                </Table.Cell>
-
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
-      </Card>
-      
     </Container>
   );
 }
