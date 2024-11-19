@@ -2,7 +2,7 @@ import { Container, Flex, Heading, Link as RadixLink, Section, Strong, Text } fr
 
 function HomePage() {
   return (
-    <Container size="3" py="3">
+    <Container size="3" m="3">
       <Flex justify="center" align="center">
         <img 
           src="https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dwfe080eff/products/D70010000019662/heroBanner/054e861d9bc2a6077e838df18a21446d87ab4d2a815fb864854cafe69be593db.jpg?sw=1368&strip=false" 
