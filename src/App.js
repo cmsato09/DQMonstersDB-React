@@ -8,48 +8,50 @@ import NotFoundPage from './pages/NotFoundPage';
 import SkillListPage from './pages/SkillListPage';
 import SkillProfilePage from './pages/SkillProfilePage';
 
-import Navbar from './components/Navbar';
+import Layout from './layout/Layout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <Layout />,
     errorElement: <NotFoundPage />,
-  },
-  {
-    path: '/dqm1/breedingmechanics',
-    element: <BreedingMechanicsPage />
-  },
-  {
-    path: '/dqm1/monsterlist',
-    element: <MonsterListPage />,
-  },
-  {
-    path: 'dqm1/monsterlist/:monsterId',
-    element: <MonsterProfilePage />,
-  },
-  {
-    path: 'dqm1/skills',
-    element: <SkillListPage />,
-  },
-  {
-    path: 'dqm1/skills/:skillId',
-    element: <SkillProfilePage />,
-  },
-  {
-    path: 'dqm1/items',
-    element: <ItemListPage />
-  },
-
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: '/dqm1/breedingmechanics', 
+        element: <BreedingMechanicsPage /> 
+      },
+      {
+        path: '/dqm1/monsterlist',
+        element: <MonsterListPage />,
+      },
+      {
+        path: 'dqm1/monsterlist/:monsterId',
+        element: <MonsterProfilePage />,
+      },
+      {
+        path: 'dqm1/skills',
+        element: <SkillListPage />,
+      },
+      {
+        path: 'dqm1/skills/:skillId',
+        element: <SkillProfilePage />,
+      },
+      {
+        path: 'dqm1/items',
+        element: <ItemListPage />
+      },
+    ],
+  }
 ]);
 
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <RouterProvider router={router} />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
