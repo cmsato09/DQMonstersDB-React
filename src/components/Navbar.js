@@ -32,12 +32,14 @@ function Navbar() {
 				</NavigationMenu.Item>
 
 				<NavigationMenu.Item>
-					<NavigationMenu.Link
-						className="NavigationMenuLink"
-						href="https://github.com/cmsato09/DQMonstersDB-React"
-					>
-						Github
-					</NavigationMenu.Link>
+					<NavigationMenu.Trigger className="NavigationMenuTrigger">
+						DQM2 <CaretDownIcon className="CaretDown" aria-hidden />
+					</NavigationMenu.Trigger>
+					<NavigationMenu.Content className="NavigationMenuContent">
+						<ul className="List one">
+							<ListItem title="Coming soon" />
+						</ul>
+						</NavigationMenu.Content>
 				</NavigationMenu.Item>
 
 				<NavigationMenu.Indicator className="NavigationMenuIndicator">
