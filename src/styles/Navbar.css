@@ -67,7 +67,8 @@ p {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: auto;
+	min-width: 180px;
 	animation-duration: 250ms;
 	animation-timing-function: ease;
 }
