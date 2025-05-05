@@ -6,3 +6,7 @@
 .background {
   background-color: var(--slate-8);
 }
+
+html {
+  scroll-behavior: smooth;;
+}
