@@ -82,7 +82,7 @@ function SkillListPage() {
             <Table.ColumnHeaderCell>Category</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Family</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>MP Cost</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell minWidth={"100px"}>MP Cost</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
