@@ -41,7 +41,7 @@ function SkillListPage() {
 
   const categoryDropdown = (
     <Select.Root onValueChange={handleCategoryChange}>
-      <Select.Trigger placeholder="skill category"/>
+      <Select.Trigger placeholder="Skill Category"/>
       <Select.Content>
         <Select.Group>
           <Select.Label>Category</Select.Label>
@@ -55,10 +55,10 @@ function SkillListPage() {
 
   const skillfamilyDropdown = (
     <Select.Root onValueChange={handleFamilyChange}>
-      <Select.Trigger placeholder="skill family"/>
+      <Select.Trigger placeholder="Skill Family"/>
       <Select.Content>
         <Select.Group>
-          <Select.Label>Location</Select.Label>
+          <Select.Label>Family</Select.Label>
           {skillfamilies.map(family => (
             <Select.Item key={family} value={family}>{family}</Select.Item>
           ))}
