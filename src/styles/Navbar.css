@@ -14,7 +14,7 @@ p {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	width: 100vw;
+	/* width: 100%; */
 	z-index: 1;
 }
 
@@ -67,7 +67,8 @@ p {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: auto;
+	min-width: 180px;
 	animation-duration: 250ms;
 	animation-timing-function: ease;
 }
@@ -138,7 +139,8 @@ p {
 }
 
 .List {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	padding: 10px;
 	margin: 0;
 	column-gap: 10px;
@@ -146,9 +148,8 @@ p {
 }
 @media only screen and (min-width: 600px) {
 	.List.one {
-		width: 400px;
-		grid-auto-flow: column;
-		/* grid-template-rows: repeat(3, 1fr); */
+		width: auto;
+		grid-auto-flow: unset;
 	}
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { fetchSkillsList } from "../api/monsterSkillAPI.js"
-import { Box, Container, Flex, Heading, Select, Strong, Table } from "@radix-ui/themes"
+import { Box, Container, Flex, Heading, Link as RadixLink, Select, Strong, Table } from "@radix-ui/themes"
 
 function SkillListPage() {
   const [skills, setSkills] = useState([]);
@@ -41,7 +41,7 @@ function SkillListPage() {
 
   const categoryDropdown = (
     <Select.Root onValueChange={handleCategoryChange}>
-      <Select.Trigger placeholder="skill category"/>
+      <Select.Trigger placeholder="Skill Category"/>
       <Select.Content>
         <Select.Group>
           <Select.Label>Category</Select.Label>
@@ -55,10 +55,10 @@ function SkillListPage() {
 
   const skillfamilyDropdown = (
     <Select.Root onValueChange={handleFamilyChange}>
-      <Select.Trigger placeholder="skill family"/>
+      <Select.Trigger placeholder="Skill Family"/>
       <Select.Content>
         <Select.Group>
-          <Select.Label>Location</Select.Label>
+          <Select.Label>Family</Select.Label>
           {skillfamilies.map(family => (
             <Select.Item key={family} value={family}>{family}</Select.Item>
           ))}
@@ -82,7 +82,7 @@ function SkillListPage() {
             <Table.ColumnHeaderCell>Category</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Family</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>MP Cost</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell minWidth={"100px"}>MP Cost</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -90,9 +90,11 @@ function SkillListPage() {
           {filteredSkills.map(skill => (
             <Table.Row key={skill.id}>
               <Table.RowHeaderCell>
-                <Link key={skill.id} to={`${skill.id}`}>
-                  {skill.old_name}
-                </Link>
+                <RadixLink asChild weight={"bold"}>
+                  <Link key={skill.id} to={`${skill.id}`}>
+                    {skill.old_name}
+                  </Link>
+                </RadixLink>
               </Table.RowHeaderCell>
               <Table.Cell>{skill.category_type}</Table.Cell>
               <Table.Cell>{skill.family_type}</Table.Cell>
