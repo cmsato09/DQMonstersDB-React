@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchBreedingInfo, fetchMonsterDetail } from "../api/monsterInfoAPI"
 import apiClient from "../api/apiClient";
-import { Card, Container, Flex, Heading, Table, Text } from "@radix-ui/themes"
+import { Card, Container, Flex, Heading, Link as RadixLink, Table, Text } from "@radix-ui/themes"
 
 function MonsterProfilePage() {
   const params = useParams();
@@ -63,7 +63,9 @@ function MonsterProfilePage() {
               {monster.skills.map(skill => (
                 <Table.Row>
                   <Table.Cell>
-                    <Link to={`/dqm1/skills/${skill.id}`}>{skill.old_name} </Link>
+                    <RadixLink asChild weight={"bold"}>
+                      <Link to={`/dqm1/skills/${skill.id}`}>{skill.old_name} </Link>
+                    </RadixLink>
                   </Table.Cell>
                   <Table.Cell>
                     <Text>{skill.description}</Text>
@@ -91,9 +93,11 @@ function MonsterProfilePage() {
                   <Table.Cell>
                     {combo.pedigree ? (
                       combo.pedigree_id !== monster.id ? (
-                        <Link to={`/dqm1/monsterlist/${combo.pedigree_id}`}>
-                          {combo.pedigree.old_name}
-                        </Link>
+                        <RadixLink asChild weight={"bold"}>
+                          <Link to={`/dqm1/monsterlist/${combo.pedigree_id}`}>
+                            {combo.pedigree.old_name}
+                          </Link>
+                        </RadixLink>
                       ) : (
                         combo.pedigree.old_name
                       )
@@ -107,9 +111,11 @@ function MonsterProfilePage() {
                   <Table.Cell>
                     {combo.parent2 ? (
                       combo.parent2_id !== monster.id ? (
-                        <Link to={`/dqm1/monsterlist/${combo.parent2_id}`}>
-                          {combo.parent2.old_name}
-                        </Link>
+                        <RadixLink asChild weight={"bold"}>
+                          <Link to={`/dqm1/monsterlist/${combo.parent2_id}`}>
+                            {combo.parent2.old_name}
+                          </Link>
+                        </RadixLink>
                       ) : (
                       combo.parent2.old_name
                       )
@@ -122,9 +128,11 @@ function MonsterProfilePage() {
                     
                   <Table.Cell>
                     {combo.child_id !== monster.id ? (
-                      <Link to={`/dqm1/monsterlist/${combo.child_id}`}>
-                        {combo.child.old_name}
-                      </Link>
+                      <RadixLink asChild weight={"bold"}>
+                        <Link to={`/dqm1/monsterlist/${combo.child_id}`}>
+                          {combo.child.old_name}
+                        </Link>
+                      </RadixLink>
                     ) : (
                       combo.child.old_name
                     )}

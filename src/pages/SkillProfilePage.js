@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { fetchSkillDetail } from "../api/monsterSkillAPI.js"
-import { Container, Flex, Heading, Strong, Table } from "@radix-ui/themes"
+import { Container, Flex, Heading, Link as RadixLink, Strong, Table } from "@radix-ui/themes"
 
 function SkillProfilePage() {
   const params = useParams();
@@ -64,9 +64,11 @@ function SkillProfilePage() {
             <Table.Row>
               <Table.Cell><Strong>Upgrades From</Strong></Table.Cell>
               <Table.Cell>
-                <Link to={`/dqm1/skills/${skill.upgrade_from.id}`}>
-                  {skill.upgrade_from.old_name}
-                </Link>
+                <RadixLink asChild weight={"bold"}>
+                  <Link to={`/dqm1/skills/${skill.upgrade_from.id}`}>
+                    {skill.upgrade_from.old_name}
+                  </Link>
+                </RadixLink>
               </Table.Cell>
             </Table.Row>
           )}
@@ -74,9 +76,11 @@ function SkillProfilePage() {
             <Table.Row>
               <Table.Cell><Strong>Upgrades To</Strong></Table.Cell>
               <Table.Cell>
-                <Link to={`/dqm1/skills/${skill.upgrade_to.id}`}>
-                  {skill.upgrade_to.old_name}
-                </Link>
+                <RadixLink asChild weight={"bold"}>
+                  <Link to={`/dqm1/skills/${skill.upgrade_to.id}`}>
+                    {skill.upgrade_to.old_name}
+                  </Link>
+                </RadixLink>
               </Table.Cell>
             </Table.Row>
           )}
