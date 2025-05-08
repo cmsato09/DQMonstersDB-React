@@ -1,4 +1,4 @@
-import { Box, Card, Link as RadixLink, Text } from "@radix-ui/themes"
+import { Box, Card, Text } from "@radix-ui/themes"
 import { Link } from "react-router-dom";
 import apiClient from "../api/apiClient";
 
