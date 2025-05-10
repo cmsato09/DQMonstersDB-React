@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from "react"
-import { fetchMonsterList } from "../api/monsterInfoAPI"
-import { Box, Container, Flex, Heading, Select, Strong, Text, TextField } from "@radix-ui/themes"
+import React, { useEffect, useState } from "react";
+import { fetchMonsterList } from "../api/monsterInfoAPI";
+import {
+  Box,
+  Container,
+  Flex,
+  Heading,
+  Select,
+  Strong,
+  Text,
+  TextField,
+} from "@radix-ui/themes";
 import MonsterCard from "../components/MonsterCard";
 
 function MonsterListPage() {
   const [monsters, setMonsters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedFamily, setSelectedFamily] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedFamily, setSelectedFamily] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const getMonsters = async () => {
@@ -32,7 +41,10 @@ function MonsterListPage() {
     setSelectedFamily(value);
   };
 
-  const monsterfamilies = ['All', ...new Set(monsters.map(monster => monster.family.family_eng))];
+  const monsterfamilies = [
+    "All",
+    ...new Set(monsters.map((monster) => monster.family.family_eng)),
+  ];
 
   const monsterfamilyDropdown = (
     <Flex align="center" gap="2">
@@ -40,12 +52,14 @@ function MonsterListPage() {
         <Strong>Filter by :</Strong>
       </Text>
       <Select.Root onValueChange={handleFamilyChange}>
-        <Select.Trigger placeholder="Monster Family"/>
+        <Select.Trigger placeholder="Monster Family" />
         <Select.Content>
           <Select.Group>
             <Select.Label>FAMILY</Select.Label>
-            {monsterfamilies.map(family => (
-              <Select.Item key={family} value={family}>{family}</Select.Item>
+            {monsterfamilies.map((family) => (
+              <Select.Item key={family} value={family}>
+                {family}
+              </Select.Item>
             ))}
           </Select.Group>
         </Select.Content>
@@ -62,26 +76,37 @@ function MonsterListPage() {
       />
     </Box>
   );
-  
+
   const renderedMonsterList = (monsters) => {
-    const filteredMonsters = monsters.filter(monster => {
-      const familyMatch = selectedFamily === 'All' || monster.family.family_eng === selectedFamily;
-      const nameMatch = monster.old_name.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredMonsters = monsters.filter((monster) => {
+      const familyMatch =
+        selectedFamily === "All" ||
+        monster.family.family_eng === selectedFamily;
+      const nameMatch = monster.old_name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
       return familyMatch && nameMatch;
     });
-    
+
     return (
-      <Flex gap="3" wrap="wrap" justify="start">
-        {filteredMonsters.map(monster => (
+      <Box className="w-full">
+        <Flex
+          gap="3"
+          wrap="wrap"
+          justify="start"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 min-w-[100px]"
+        >
+          {filteredMonsters.map((monster) => (
             <MonsterCard
               key={monster.id}
               monsterID={monster.id}
               monsterOldName={monster.old_name}
               monsterFamily={monster.family.family_eng}
             />
-        ))}
-      </Flex>
-    )
+          ))}
+        </Flex>
+      </Box>
+    );
   };
 
   return (
@@ -93,7 +118,7 @@ function MonsterListPage() {
       </Flex>
       {renderedMonsterList(monsters)}
     </Container>
-  )
+  );
 }
 
 export default MonsterListPage;
