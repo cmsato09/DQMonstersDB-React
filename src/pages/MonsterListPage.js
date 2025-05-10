@@ -71,16 +71,18 @@ function MonsterListPage() {
     });
     
     return (
-      <Flex gap="3" wrap="wrap" justify="start">
-        {filteredMonsters.map(monster => (
-            <MonsterCard
-              key={monster.id}
-              monsterID={monster.id}
-              monsterOldName={monster.old_name}
-              monsterFamily={monster.family.family_eng}
-            />
-        ))}
-      </Flex>
+      <Box className="w-full">
+        <Flex gap="3" wrap="wrap" justify="start" className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 min-w-[100px]">
+          {filteredMonsters.map(monster => (
+              <MonsterCard
+                key={monster.id}
+                monsterID={monster.id}
+                monsterOldName={monster.old_name}
+                monsterFamily={monster.family.family_eng}
+              />
+          ))}
+        </Flex>
+      </Box>
     )
   };
 

@@ -6,7 +6,7 @@ function MonsterCard({monsterID, monsterOldName, monsterFamily}) {
   const imageURL = `${apiClient.defaults.baseURL}static/images/dqm1monsters/${monsterOldName}.png`
   
   return (
-    <Box width="125px" margin="10px">
+    <Box className="w-full h-full">
       <Card asChild className="group hover:shadow-md hover:shadow-black/20 transition-shadow duration-300 hover:outline hover:outline-2 hover:outline-blue-500">
         <Link key={monsterID} to={`${monsterID}`}>
           <img 
@@ -18,10 +18,10 @@ function MonsterCard({monsterID, monsterOldName, monsterFamily}) {
               width: '100%'
             }}
           />
-          <Text as="div" weight={"bold"} color="blue" className="group-hover:underline">
+          <Text as="div" weight={"bold"} color="blue" className="group-hover:underline text-sm sm:text-base">
             {monsterOldName}
           </Text>
-          <Text as="div" color="blue" className="group-hover:underline">
+          <Text as="div" color="blue" className="group-hover:underline text-xs sm:text-sm">
             {monsterFamily}
           </Text>
         </Link>
