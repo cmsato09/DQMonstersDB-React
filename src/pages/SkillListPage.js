@@ -25,8 +25,23 @@ function SkillListPage() {
     getSkills();
   }, []);
 
-  if (loading) return <p>Loading skills...</p>;
-  if (error) return <p>Error fetching skills: {error}</p>;
+  if (loading) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Skills List</Heading>
+        <p>Loading skills...</p>
+      </Container>
+    );
+  }
+  
+  if (error) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Skills List</Heading>
+        <p>Error fetching skills: {error}</p>
+      </Container>
+    );
+  }
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
