@@ -28,8 +28,25 @@ function MonsterProfilePage() {
     getMonsterDetail(params.monsterId);
   }, [params.monsterId]);
 
-  if (loading) return <p>Loading monsters...</p>;
-  if (error) return <p>Error fetching monsters: {error}</p>;
+  
+  if (loading) {
+    return (
+      <Container size="3" m="3">
+        <Heading>Monster Profile</Heading>
+        <p>Loading monster...</p>
+      </Container>
+    );
+  }
+  
+  if (error) {
+    return (
+      <Container size="3" m="3">
+        <Heading>Monster Profile</Heading>
+        <p>Error fetching monster: {error}</p>
+      </Container>
+    );
+  }
+
   const imageURL = `${apiClient.defaults.baseURL}static/images/dqm1monsters/${monster.old_name}.png`
 
   return (
