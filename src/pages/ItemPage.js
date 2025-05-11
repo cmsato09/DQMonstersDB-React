@@ -24,9 +24,24 @@ function ItemListPage() {
     getItems();
   }, []);
 
-  if (loading) return <p>Loading items...</p>;
-  if (error) return <p>Error fetching items: {error}</p>;
-
+  if (loading) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Items List</Heading>
+        <p>Loading items...</p>
+      </Container>
+    );
+  }
+  
+  if (error) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Items List</Heading>
+        <p>Error fetching items: {error}</p>
+      </Container>
+    );
+  }
+  
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
   };
