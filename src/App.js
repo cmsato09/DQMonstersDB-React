@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AboutPage from './pages/AboutPage';
 import BreedingMechanicsPage from './pages/BreedingMechanicsPage';
 import HomePage from './pages/HomePage';
 import ItemListPage from './pages/ItemPage';
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: 'about',
+        element: <AboutPage />
       },
       {
         path: '/dqm1/breedingmechanics', 
