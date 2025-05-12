@@ -24,8 +24,23 @@ function SkillProfilePage() {
     getSkillDetail(params.skillId);
   }, [params.skillId]);
 
-  if (loading) return <p>Loading skill...</p>;
-  if (error) return <p>Error fetching skill: {error}</p>;
+  if (loading) {
+    return (
+      <Container size="3" m="3">
+        <Heading>Skill Profile</Heading>
+        <p>Loading skill...</p>
+      </Container>
+    );
+  }
+  
+  if (error) {
+    return (
+      <Container size="3" m="3">
+        <Heading>Skill Profile</Heading>
+        <p>Error fetching skill: {error}</p>
+      </Container>
+    );
+  }
 
   return (
     <Container size="2" m="3">

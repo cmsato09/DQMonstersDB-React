@@ -34,9 +34,24 @@ function MonsterListPage() {
     getMonsters();
   }, []);
 
-  if (loading) return <p>Loading monsters...</p>;
-  if (error) return <p>Error fetching monsters: {error}</p>;
-
+  if (loading) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Monster List</Heading>
+        <p>Loading monsters...</p>
+      </Container>
+    );
+  }
+  
+  if (error) {
+    return (
+      <Container size="3" m="3">
+        <Heading>DQM1 Monster List</Heading>
+        <p>Error fetching monsters: {error}</p>
+      </Container>
+    );
+  }
+  
   const handleFamilyChange = (value) => {
     setSelectedFamily(value);
   };
