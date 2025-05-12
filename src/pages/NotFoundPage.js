@@ -8,7 +8,7 @@ function NotFoundPage() {
   return (
     <div id="top" className="flex flex-col min-h-screen ">
       <Header />
-      <Container size="3" classname="flex-1">
+      <Container size="3" className="flex-1">
         <main className="min-h-[calc(75vh-8rem)] flex flex-col items-center justify-center gap-4">
           <Heading>Page Not Found</Heading>
           <div>
