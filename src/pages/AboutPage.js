@@ -7,7 +7,7 @@ function AboutPage() {
         <Box>
           <Heading as="h1" mb={"3"}>About the Website</Heading>
             <Text as="p">
-              I didn't like how information was displayed in other webpages about these games (Particulary the Japanese websites), so I made my own. Game information was compiled from several sources, online and print. I hope this website helps you on your journey in Dragon Quest Monsters. Thanks for visiting!
+              I didn't like how information was displayed in other webpages about these games (Particularly the Japanese websites), so I made my own. Game information was compiled from several sources, online and print. I hope this website helps you on your journey in Dragon Quest Monsters. Thanks for visiting!
             </Text>
         </Box>
         <Box>
