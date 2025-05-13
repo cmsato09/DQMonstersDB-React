@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import BreedingMechanicsPage from './pages/BreedingMechanicsPage';
+import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import ItemListPage from './pages/ItemPage';
 import MonsterListPage from './pages/MonsterListPage';
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <AboutPage />
+      },
+      {
+        path: 'contact',
+        element: <ContactPage />
       },
       {
         path: '/dqm1/breedingmechanics', 
