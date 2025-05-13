@@ -58,7 +58,7 @@ function ContactPage() {
             <Heading as="h1" mb={"1"}>Contact</Heading>
             <Text>Thank you for visiting the website. If you have any feedback or questions, please let me know! I'll try to answer back within a day. Another way to raise problems is to go to the GitHub repository and write a new issue.</Text>
             <div>
-              <form onSubmit={onSubmit} classname="flex-col">
+              <form onSubmit={onSubmit} className="flex-col">
                 <Flex direction="column" gap="1">
                   <Box>
                     <Text as="label" size="2" mb="2" weight="bold">
