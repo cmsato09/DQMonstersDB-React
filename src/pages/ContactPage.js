@@ -2,28 +2,51 @@ import { useState } from "react";
 import { Box, Button, Container, Flex, Heading, Text, TextArea, TextField } from "@radix-ui/themes";
 
 function ContactPage() {
-  const [result, setResult] = useState("");
+  const [formState, setFormState] = useState({
+    loading: false,
+    message: "",
+    success: null
+  });
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setResult("Sending....");
+    setFormState({ 
+      loading: true, 
+      message: "Sending....", 
+      success: null 
+    });
     const formData = new FormData(event.target);
 
     formData.append("access_key", "21a2d630-6c9d-45f4-a220-831fbd427771");
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      if (data.success) {
+        setFormState({
+          loading: false,
+          message: "Message sent successfully!",
+          success: true
+        });
+        event.target.reset();
+      } else {
+        setFormState({
+          loading: false,
+          message: data.message || "Failed to send message",
+          success: false
+        });
+      }
+    } catch (error) {
+        setFormState({
+          loading: false,
+          message: "An error occurred. Please try again.",
+          success: false
+      });
     }
   };
 
@@ -74,12 +97,18 @@ function ContactPage() {
                   <Button 
                     type="submit"
                     color="indigo"
+                    disabled={formState.loading}
                   >
-                    Submit Comment
+                    {formState.loading ? "Sending..." : "Submit Comment"}
                   </Button>
                 </Flex>
               </form>
-              <Text>{result}</Text>
+              
+              {formState.message && (
+                <Text color={formState.success ? "green" : "red"}>
+                  {formState.message}
+                </Text>
+              )}
             </div>
           </Flex>
         </Box>
